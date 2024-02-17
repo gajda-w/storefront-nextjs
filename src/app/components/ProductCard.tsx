@@ -6,27 +6,15 @@ export interface ProductCardProps {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   return (
-    <li className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-      <img
-        src={product.image}
-        alt="Product"
-        className="h-80 w-72 object-cover rounded-t-xl"
-      />
-      <div className="px-4 py-3 w-72">
-        <span className="text-gray-400 mr-3 uppercase text-xs">
-          {product.category}
-        </span>
-        <h1 className="text-lg font-bold text-black truncate block capitalize">
-          {product.name}
-        </h1>
+    <li className="w-72 rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl">
+      <img src={product.image} alt="Product" className="h-80 w-72 rounded-t-xl object-cover" />
+      <div className="w-72 px-4 py-3">
+        <span className="mr-3 text-xs uppercase text-gray-400">{product.category}</span>
+        <h1 className="block truncate text-lg font-bold capitalize text-black">{product.name}</h1>
         <div className="flex items-center">
-          <p className="text-lg font-semibold text-black cursor-auto my-3">
-            {product.price}
-          </p>
+          <p className="my-3 cursor-auto text-lg font-semibold text-black">{product.price}</p>
           <del>
-            <p className="text-sm text-gray-600 cursor-auto ml-2">
-              {product.regularPrice}
-            </p>
+            <p className="ml-2 cursor-auto text-sm text-gray-600">{product.regularPrice}</p>
           </del>
           <div className="ml-auto">
             <svg

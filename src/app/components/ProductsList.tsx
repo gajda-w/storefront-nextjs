@@ -1,4 +1,4 @@
-import { ProductCard } from "@/app/components/ProductCard";
+import { ProductCard } from "@/app/components";
 import { type Product } from "@/app/types";
 
 export interface ProductsListProps {
@@ -7,10 +7,7 @@ export interface ProductsListProps {
 
 export const ProductsList = ({ products }: ProductsListProps) => {
   return (
-    <ul
-      className="flex flex-wrap items-center justify-center gap-5"
-      data-testid="products-list"
-    >
+    <ul className="flex flex-wrap items-center justify-center gap-5" data-testid="products-list">
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
