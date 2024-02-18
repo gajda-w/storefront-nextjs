@@ -1,6 +1,23 @@
 import { type ProductResponseItem } from "@/app/products/page";
 import { type Product } from "@/app/types";
 
+export const generateStaticParams = async () => {
+  const res = await fetch("https://naszsklep-api.vercel.app/api/products");
+  const productsResponse = (await res.json()) as ProductResponseItem[];
+
+  const products = productsResponse.map(
+    (product): Product => ({
+      id: product.id,
+      name: product.title,
+      category: product.category,
+      price: product.price,
+      image: product.image,
+    }),
+  );
+
+  return products.map((product) => ({ id: product.id }));
+};
+
 export default async function Product({ params: { id } }: { params: { id: string } }) {
   const res = await fetch(`https://naszsklep-api.vercel.app/api/products/${id}`);
   const product = (await res.json()) as ProductResponseItem;
