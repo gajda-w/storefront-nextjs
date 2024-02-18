@@ -16,8 +16,15 @@ export type ProductResponseItem = {
   longDescription: string;
 };
 
-export default async function Products() {
-  const res = await fetch("https://naszsklep-api.vercel.app/api/products?take=10&offset=0");
+export default async function Products({
+  params: { pageNumber },
+}: {
+  params: { pageNumber: string };
+}) {
+  const paginationNumber = parseInt(pageNumber, 10) * 10;
+  const res = await fetch(
+    `https://naszsklep-api.vercel.app/api/products?take=10&offset=${paginationNumber}`,
+  );
   const productsResponse = (await res.json()) as ProductResponseItem[];
 
   const products = productsResponse.map(
@@ -33,9 +40,10 @@ export default async function Products() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <ProductsList products={products} />
-      <Link href="/products/0" className="mt-8">
-        Show all
-      </Link>
+      <div className="mt-8 flex gap-10">
+        {pageNumber !== "0" && <Link href={`/products/${Number(pageNumber) - 1}`}>prev</Link>}
+        <Link href={`/products/${Number(pageNumber) + 1}`}>next</Link>
+      </div>
     </main>
   );
 }

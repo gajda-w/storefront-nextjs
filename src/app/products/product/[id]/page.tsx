@@ -1,4 +1,4 @@
-import { type ProductResponseItem } from "@/app/products/page";
+import type { ProductResponseItem } from "@/app/products/[pageNumber]/page";
 import { type Product } from "@/app/types";
 
 export const generateStaticParams = async () => {
