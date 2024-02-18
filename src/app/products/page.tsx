@@ -25,7 +25,6 @@ export default async function Products() {
       name: product.title,
       category: product.category,
       price: product.price,
-      regularPrice: product.price * 1.2,
       image: product.image,
     }),
   );

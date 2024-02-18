@@ -12,10 +12,8 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         <span className="mr-3 text-xs uppercase text-gray-400">{product.category}</span>
         <h1 className="block truncate text-lg font-bold capitalize text-black">{product.name}</h1>
         <div className="flex items-center">
-          <p className="my-3 cursor-auto text-lg font-semibold text-black">{product.price}</p>
-          <del>
-            <p className="ml-2 cursor-auto text-sm text-gray-600">{product.regularPrice}</p>
-          </del>
+          <p className="my-3 cursor-auto text-lg font-semibold text-black">{product.price} PLN</p>
+          <del></del>
           <div className="ml-auto">
             <svg
               xmlns="http://www.w3.org/2000/svg"
