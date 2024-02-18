@@ -1,6 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
+import { Moon, Sun } from "lucide-react";
 
 export const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
@@ -11,9 +12,7 @@ export const ThemeToggle = () => {
   };
   return (
     <div>
-      <button className="text-black" onClick={handleSetTheme}>
-        {theme}
-      </button>
+      {theme === "light" ? <Sun onClick={handleSetTheme} /> : <Moon onClick={handleSetTheme} />}
     </div>
   );
 };
