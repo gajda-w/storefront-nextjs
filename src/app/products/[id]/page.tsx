@@ -18,6 +18,17 @@ export const generateStaticParams = async () => {
   return products.map((product) => ({ id: product.id }));
 };
 
+export const generateMetadata = async ({ params: { id } }: { params: { id: string } }) => {
+  const res = await fetch(`https://naszsklep-api.vercel.app/api/products/${id}`);
+  const product = (await res.json()) as ProductResponseItem;
+
+  return {
+    title: product.title,
+    description: product.description,
+    image: product.image,
+  };
+};
+
 export default async function Product({ params: { id } }: { params: { id: string } }) {
   const res = await fetch(`https://naszsklep-api.vercel.app/api/products/${id}`);
   const product = (await res.json()) as ProductResponseItem;
