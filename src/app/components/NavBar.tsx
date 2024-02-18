@@ -1,9 +1,10 @@
 import { ActiveLink } from "@/app/components/ActiveLink";
 import { HamburgerMenu } from "@/app/components/HamburgerMenu";
+import { ThemeToggle } from "@/app/components/ThemeToggle";
 
 export const Navbar = () => {
   return (
-    <nav className="bg-gray-800">
+    <nav className="bg-white dark:bg-gray-800">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -20,6 +21,7 @@ export const Navbar = () => {
               </li>
             </ul>
           </div>
+          <ThemeToggle />
         </div>
       </div>
     </nav>
