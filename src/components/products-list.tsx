@@ -1,17 +1,19 @@
+"use client";
+
 import Link from "next/link";
-import { ProductCard } from "@/app/components/ProductCard";
-import { type CategoryProductsBySlugQuery } from "@/gql/graphql";
+import { ProductCard } from "@/components/product-card";
+import { type ProductFragment } from "@/gql/graphql";
 
 export interface ProductsListProps {
-  products: CategoryProductsBySlugQuery;
+  products?: ProductFragment[];
 }
 
 export const ProductsList = ({ products }: ProductsListProps) => {
   return (
     <ul className="flex flex-wrap items-center justify-center gap-5" data-testid="products-list">
-      {products.category?.products?.edges.map(({ node }) => (
-        <Link href={`/product/${node.slug}`} key={node.id}>
-          <ProductCard product={node} />
+      {products?.map((product) => (
+        <Link href={`/product/${product.slug}`} key={product.id}>
+          <ProductCard product={product} />
         </Link>
       ))}
     </ul>

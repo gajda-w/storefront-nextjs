@@ -31903,7 +31903,26 @@ export type CategoryProductsBySlugQueryVariables = Exact<{
 }>;
 
 
-export type CategoryProductsBySlugQuery = { category?: { name: string, id: string, slug: string, products?: { edges: Array<{ node: { id: string, slug: string, name: string, description?: unknown | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, product: { name: string } }> | null, defaultVariant?: { id: string, name: string, pricing?: { price?: { gross: { amount: number, currency: string } } | null } | null } | null } }> } | null } | null };
+export type CategoryProductsBySlugQuery = { category?: { id: string, name: string, slug: string, products?: { pageInfo: { hasNextPage: boolean, hasPreviousPage: boolean }, edges: Array<{ node: { id: string, slug: string, name: string, description?: unknown | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, product: { name: string } }> | null, defaultVariant?: { id: string, name: string, pricing?: { price?: { gross: { amount: number, currency: string } } | null } | null } | null } }> } | null } | null };
+
+export type CollectionFragment = { id: string, name: string, slug: string };
+
+export type CollectionsProductsBySlugQueryVariables = Exact<{
+  first: Scalars['Int']['input'];
+  channel: Scalars['String']['input'];
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type CollectionsProductsBySlugQuery = { collection?: { name: string, id: string, slug: string, products?: { edges: Array<{ node: { id: string, slug: string, name: string, description?: unknown | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, product: { name: string } }> | null, defaultVariant?: { id: string, name: string, pricing?: { price?: { gross: { amount: number, currency: string } } | null } | null } | null } }> } | null } | null };
+
+export type CollectionsQueryVariables = Exact<{
+  first: Scalars['Int']['input'];
+  channel: Scalars['String']['input'];
+}>;
+
+
+export type CollectionsQuery = { collections?: { edges: Array<{ node: { name: string, id: string, slug: string } }> } | null };
 
 export type ProductFragment = { id: string, slug: string, name: string, description?: unknown | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, product: { name: string } }> | null, defaultVariant?: { id: string, name: string, pricing?: { price?: { gross: { amount: number, currency: string } } | null } | null } | null };
 
@@ -31936,6 +31955,13 @@ export const CategoryFragmentDoc = new TypedDocumentString(`
   slug
 }
     `, {"fragmentName":"Category"}) as unknown as TypedDocumentString<CategoryFragment, unknown>;
+export const CollectionFragmentDoc = new TypedDocumentString(`
+    fragment Collection on Collection {
+  id
+  name
+  slug
+}
+    `, {"fragmentName":"Collection"}) as unknown as TypedDocumentString<CollectionFragment, unknown>;
 export const ProductFragmentDoc = new TypedDocumentString(`
     fragment Product on Product {
   id
@@ -31985,10 +32011,61 @@ export const CategoriesDocument = new TypedDocumentString(`
 export const CategoryProductsBySlugDocument = new TypedDocumentString(`
     query CategoryProductsBySlug($first: Int!, $channel: String!, $slug: String!) {
   category(slug: $slug) {
+    ...Category
+    products(first: $first, channel: $channel) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+      }
+      edges {
+        node {
+          ...Product
+        }
+      }
+    }
+  }
+}
+    fragment Category on Category {
+  id
+  name
+  slug
+}
+fragment Product on Product {
+  id
+  slug
+  name
+  description
+  thumbnail {
+    url
+    alt
+  }
+  variants {
+    id
+    name
+    product {
+      name
+    }
+  }
+  defaultVariant {
+    id
+    name
+    pricing {
+      price {
+        gross {
+          amount
+          currency
+        }
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<CategoryProductsBySlugQuery, CategoryProductsBySlugQueryVariables>;
+export const CollectionsProductsBySlugDocument = new TypedDocumentString(`
+    query CollectionsProductsBySlug($first: Int!, $channel: String!, $slug: String!) {
+  collection(slug: $slug, channel: $channel) {
     name
     id
     slug
-    products(first: $first, channel: $channel) {
+    products(first: $first) {
       edges {
         node {
           ...Product
@@ -32025,7 +32102,20 @@ export const CategoryProductsBySlugDocument = new TypedDocumentString(`
       }
     }
   }
-}`) as unknown as TypedDocumentString<CategoryProductsBySlugQuery, CategoryProductsBySlugQueryVariables>;
+}`) as unknown as TypedDocumentString<CollectionsProductsBySlugQuery, CollectionsProductsBySlugQueryVariables>;
+export const CollectionsDocument = new TypedDocumentString(`
+    query Collections($first: Int!, $channel: String!) {
+  collections(first: $first, channel: $channel) {
+    edges {
+      node {
+        name
+        id
+        slug
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CollectionsQuery, CollectionsQueryVariables>;
 export const ProductBySlugDocument = new TypedDocumentString(`
     query ProductBySlug($slug: String!, $channel: String!) {
   product(slug: $slug, channel: $channel) {

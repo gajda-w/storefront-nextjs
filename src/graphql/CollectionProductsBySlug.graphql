@@ -1,0 +1,14 @@
+query CollectionsProductsBySlug($first: Int!, $channel: String!, $slug: String!) {
+  collection(slug: $slug, channel: $channel) {
+    name
+    id
+    slug
+    products(first: $first) {
+      edges {
+        node {
+          ...Product
+        }
+      }
+    }
+  }
+}

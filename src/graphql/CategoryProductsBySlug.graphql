@@ -1,9 +1,11 @@
 query CategoryProductsBySlug($first: Int!, $channel: String!, $slug: String!) {
   category(slug: $slug) {
-    name
-    id
-    slug
+    ...Category
     products(first: $first, channel: $channel) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+      }
       edges {
         node {
           ...Product
