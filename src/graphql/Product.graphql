@@ -3,6 +3,11 @@ fragment Product on Product {
   slug
   name
   description
+  media {
+    id
+    url
+    alt
+  }
   thumbnail {
     url
     alt

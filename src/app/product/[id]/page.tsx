@@ -4,6 +4,14 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ProductBySlugDocument } from "@/gql/graphql";
 import { executeGraphql } from "@/lib/graphql";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 // export const generateStaticParams = async () => {
 //   const res = await fetch("https://naszsklep-api.vercel.app/api/products");
@@ -48,13 +56,29 @@ export default async function Product({ params: { id } }: { params: { id: string
   return (
     <div className="flex flex-col gap-10 p-2 sm:flex-row sm:px-6 lg:p-8">
       <div className="w-1/2 overflow-hidden">
-        <Image
-          src={product.product?.thumbnail?.url || ""}
-          width={500}
-          height={500}
-          alt={product.product?.name || ""}
-          className="object-coover w-full"
-        />
+        <Carousel className="m-full mx-4">
+          <CarouselContent>
+            {product.product?.media?.map((item) => (
+              <CarouselItem key={item.id}>
+                <div className="p-1">
+                  <Card>
+                    <CardContent className="flex aspect-square items-center justify-center p-6">
+                      <Image
+                        src={item.url}
+                        alt="Product"
+                        width={500}
+                        height={500}
+                        className="h-full w-full rounded-t-xl object-cover"
+                      />
+                    </CardContent>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </div>
       <div className="max-w-xl">
         <h1 className="text-4xl font-bold">{product.product?.name}</h1>
