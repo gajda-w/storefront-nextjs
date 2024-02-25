@@ -1,0 +1,9 @@
+query Categories($first: Int!) {
+  categories(first: $first) {
+    edges {
+      node {
+        ...Category
+      }
+    }
+  }
+}

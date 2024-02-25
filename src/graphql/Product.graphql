@@ -1,0 +1,29 @@
+fragment Product on Product {
+  id
+  slug
+  name
+  description
+  thumbnail {
+    url
+    alt
+  }
+  variants {
+    id
+    name
+    product {
+      name
+    }
+  }
+  defaultVariant {
+    id
+    name
+    pricing {
+      price {
+        gross {
+          amount
+          currency
+        }
+      }
+    }
+  }
+}

@@ -1,18 +1,23 @@
-import type { Product } from "@/app/types";
+import { type ProductFragment } from "@/gql/graphql";
 
 export interface ProductCardProps {
-  product: Product;
+  product: ProductFragment;
 }
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <li className="w-72 rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl">
-      <img src={product.image} alt="Product" className="h-80 w-72 rounded-t-xl object-cover" />
+      <img
+        src={product.thumbnail?.url}
+        alt="Product"
+        className="h-80 w-72 rounded-t-xl object-cover"
+      />
       <div className="w-72 px-4 py-3">
-        <span className="mr-3 text-xs uppercase text-gray-400">{product.category}</span>
         <h1 className="block truncate text-lg font-bold capitalize text-black">{product.name}</h1>
         <div className="flex items-center">
-          <p className="my-3 cursor-auto text-lg font-semibold text-black">{product.price} PLN</p>
+          <p className="my-3 cursor-auto text-lg font-semibold text-black">
+            {product.defaultVariant?.pricing?.price?.gross.amount} PLN
+          </p>
           <del></del>
           <div className="ml-auto">
             <svg
