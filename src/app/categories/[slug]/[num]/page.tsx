@@ -16,7 +16,6 @@ export default async function Products({ params: { slug } }: { params: { slug: s
 
   const products = categories.category?.products?.edges.map(({ node }) => node);
 
-  console.log("Products", categories.category?.products?.edges);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <ProductsList products={products} />

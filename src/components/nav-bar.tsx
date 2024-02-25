@@ -1,4 +1,4 @@
-import { Feather, ShoppingBag, User } from "lucide-react";
+import { Feather, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -83,7 +83,7 @@ export const Navbar = async () => {
             </div>
             <div className="flex gap-2">
               <Button variant="outline" size="icon">
-                <ShoppingBag />
+                <ShoppingCart />
               </Button>
               <Button variant="outline" size="icon">
                 <User />

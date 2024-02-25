@@ -1,5 +1,7 @@
 // import type { ProductResponseItem } from "@/app/products/[pageNumber]/page";
 // import { type Product } from "@/app/types";
+import Image from "next/image";
+import { notFound } from "next/navigation";
 import { ProductBySlugDocument } from "@/gql/graphql";
 import { executeGraphql } from "@/lib/graphql";
 
@@ -20,28 +22,39 @@ import { executeGraphql } from "@/lib/graphql";
 //   return products.map((product) => ({ id: product.id }));
 // };
 
-// export const generateMetadata = async ({ params: { id } }: { params: { id: string } }) => {
-//   const res = await fetch(`https://naszsklep-api.vercel.app/api/products/${id}`);
-//   const product = (await res.json()) as ProductResponseItem;
-
-//   return {
-//     title: product.title,
-//     description: product.description,
-//     image: product.image,
-//   };
-// };
-
-export default async function Product({ params: { id } }: { params: { id: string } }) {
-  console.log("id", id);
+export const generateMetadata = async ({ params: { id } }: { params: { id: string } }) => {
   const product = await executeGraphql(ProductBySlugDocument, {
     slug: id,
     channel: "default-channel",
   });
 
+  return {
+    title: product.product?.name,
+    description: product.product?.name,
+    image: product.product?.thumbnail?.url,
+  };
+};
+
+export default async function Product({ params: { id } }: { params: { id: string } }) {
+  const product = await executeGraphql(ProductBySlugDocument, {
+    slug: id,
+    channel: "default-channel",
+  });
+
+  if (!product) {
+    return notFound();
+  }
+
   return (
     <div className="flex flex-col gap-10 p-2 sm:flex-row sm:px-6 lg:p-8">
       <div className="w-1/2 overflow-hidden">
-        <img src={product.product?.thumbnail?.url} className="object-coover w-full" />
+        <Image
+          src={product.product?.thumbnail?.url || ""}
+          width={500}
+          height={500}
+          alt={product.product?.name || ""}
+          className="object-coover w-full"
+        />
       </div>
       <div className="max-w-xl">
         <h1 className="text-4xl font-bold">{product.product?.name}</h1>
@@ -50,8 +63,6 @@ export default async function Product({ params: { id } }: { params: { id: string
             {product.product?.defaultVariant?.pricing?.price?.gross.amount}
           </p>
         </div>
-        {/* <p>{product.product?.description}</p> */}
-        <p>{JSON.stringify(product.product?.description)}</p>
       </div>
     </div>
   );
