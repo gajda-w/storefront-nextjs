@@ -18,7 +18,7 @@ export interface ProductCardProps {
 export const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <li className="list-none">
-      <Card className="w-[350px]">
+      <Card className="max-w-[350px]">
         <CardHeader>
           <CardTitle>{product.name}</CardTitle>
         </CardHeader>
