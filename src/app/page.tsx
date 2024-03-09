@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ProductCard } from "@/components/product-card";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { CollectionsProductsBySlugDocument } from "@/gql/graphql";
@@ -27,9 +28,11 @@ export default async function Home() {
         <CarouselContent>
           {products?.map((product) => (
             <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3">
-              <div className="flex justify-center p-1 ">
-                <ProductCard product={product} />
-              </div>
+              <Link href={`product/${product.slug}`} key={product.id}>
+                <div className="flex justify-center p-1 ">
+                  <ProductCard product={product} />
+                </div>
+              </Link>
             </CarouselItem>
           ))}
         </CarouselContent>

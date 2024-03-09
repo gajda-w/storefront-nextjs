@@ -16,6 +16,8 @@ import {
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/toggle-mode";
 import { Button } from "@/components/ui/button";
+// import { SearchBar } from "@/components/search-bar/search-bar";
+import { SearchBar } from "@/components/search-bar/search-bar";
 
 export const Navbar = async () => {
   const categories = await executeGraphql(CategoriesDocument, { first: 6 });
@@ -88,6 +90,7 @@ export const Navbar = async () => {
               <Button variant="outline" size="icon">
                 <User />
               </Button>
+              <SearchBar />
               <div className="ml-4">
                 <ModeToggle />
               </div>

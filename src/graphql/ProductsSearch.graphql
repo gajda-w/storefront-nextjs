@@ -1,0 +1,9 @@
+query ProductsSearch($channel: String!, $first: Int!, $search: String!) {
+  products(channel: $channel, first: $first, search: $search) {
+    edges {
+      node {
+        ...Product
+      }
+    }
+  }
+}

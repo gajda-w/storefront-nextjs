@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-// import { Providers } from "@/app/providers";
+import { Oswald } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 import { Navbar } from "@/components/nav-bar";
 
-const inter = Inter({ subsets: ["latin"] });
+const oswald = Oswald({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,8 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        {/* <Providers> */}
+      <body className={oswald.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -31,7 +29,6 @@ export default function RootLayout({
           <Navbar />
           {children}
         </ThemeProvider>
-        {/* </Providers> */}
       </body>
     </html>
   );

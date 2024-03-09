@@ -18,7 +18,7 @@ export interface ProductCardProps {
 export const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <li className="list-none">
-      <Card className="max-w-[350px]">
+      <Card className="hover-card max-w-[350px]">
         <CardHeader>
           <CardTitle>{product.name}</CardTitle>
         </CardHeader>
@@ -43,8 +43,8 @@ export const ProductCard = ({ product }: ProductCardProps) => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <CarouselPrevious className="carousel-control" />
+            <CarouselNext className="carousel-control" />
           </Carousel>
           {/* TODO component for formatted prices */}
           {product.defaultVariant?.pricing?.price?.gross.amount}{" "}

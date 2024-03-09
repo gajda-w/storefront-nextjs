@@ -4445,7 +4445,7 @@ export type CheckoutCustomerDetach = {
 };
 
 /**
- * Updates the delivery method (shipping method or pick up point) of the checkout.
+ * Updates the delivery method (shipping method or pick up point) of the checkout. Updates the checkout shipping_address for click and collect delivery for a warehouse address.
  *
  * Added in Saleor 3.1.
  *
@@ -4512,6 +4512,7 @@ export type CheckoutErrorCode =
   | 'QUANTITY_GREATER_THAN_LIMIT'
   | 'REQUIRED'
   | 'SHIPPING_ADDRESS_NOT_SET'
+  | 'SHIPPING_CHANGE_FORBIDDEN'
   | 'SHIPPING_METHOD_NOT_APPLICABLE'
   | 'SHIPPING_METHOD_NOT_SET'
   | 'SHIPPING_NOT_REQUIRED'
@@ -11055,7 +11056,7 @@ export type Mutation = {
    */
   checkoutCustomerDetach?: Maybe<CheckoutCustomerDetach>;
   /**
-   * Updates the delivery method (shipping method or pick up point) of the checkout.
+   * Updates the delivery method (shipping method or pick up point) of the checkout. Updates the checkout shipping_address for click and collect delivery for a warehouse address.
    *
    * Added in Saleor 3.1.
    *
@@ -27664,7 +27665,7 @@ export type TaxConfigurationUpdateInput = {
   /** List of country codes for which to remove the tax configuration. */
   removeCountriesConfiguration?: InputMaybe<Array<CountryCode>>;
   /**
-   * The tax app id that will be used to calculate the taxes for the given channel. Empty value for `TAX_APP` set as `taxCalculationStrategy` means that Saleor will iterate over all installed tax apps. If multiple tax apps exist with provided tax app id use the `App` with newest `created` date. Will become mandatory in 4.0 for `TAX_APP` `taxCalculationStrategy`.
+   * The tax app id that will be used to calculate the taxes for the given channel. Empty value for `TAX_APP` set as `taxCalculationStrategy` means that Saleor will iterate over all installed tax apps. If multiple tax apps exist with provided tax app id use the `App` with newest `created` date. It's possible to set plugin by using prefix `plugin:` with `PLUGIN_ID` e.g. with Avalara `plugin:mirumee.taxes.avalara`.Will become mandatory in 4.0 for `TAX_APP` `taxCalculationStrategy`.
    *
    * Added in Saleor 3.19.
    */
@@ -31934,6 +31935,15 @@ export type ProductBySlugQueryVariables = Exact<{
 
 export type ProductBySlugQuery = { product?: { id: string, slug: string, name: string, description?: unknown | null, media?: Array<{ id: string, url: string, alt: string }> | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, product: { name: string } }> | null, defaultVariant?: { id: string, name: string, pricing?: { price?: { gross: { amount: number, currency: string } } | null } | null } | null } | null };
 
+export type ProductsSearchQueryVariables = Exact<{
+  channel: Scalars['String']['input'];
+  first: Scalars['Int']['input'];
+  search: Scalars['String']['input'];
+}>;
+
+
+export type ProductsSearchQuery = { products?: { edges: Array<{ node: { id: string, slug: string, name: string, description?: unknown | null, media?: Array<{ id: string, url: string, alt: string }> | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, product: { name: string } }> | null, defaultVariant?: { id: string, name: string, pricing?: { price?: { gross: { amount: number, currency: string } } | null } | null } | null } }> } | null };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -32171,3 +32181,47 @@ export const ProductBySlugDocument = new TypedDocumentString(`
     }
   }
 }`) as unknown as TypedDocumentString<ProductBySlugQuery, ProductBySlugQueryVariables>;
+export const ProductsSearchDocument = new TypedDocumentString(`
+    query ProductsSearch($channel: String!, $first: Int!, $search: String!) {
+  products(channel: $channel, first: $first, search: $search) {
+    edges {
+      node {
+        ...Product
+      }
+    }
+  }
+}
+    fragment Product on Product {
+  id
+  slug
+  name
+  description
+  media {
+    id
+    url
+    alt
+  }
+  thumbnail {
+    url
+    alt
+  }
+  variants {
+    id
+    name
+    product {
+      name
+    }
+  }
+  defaultVariant {
+    id
+    name
+    pricing {
+      price {
+        gross {
+          amount
+          currency
+        }
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<ProductsSearchQuery, ProductsSearchQueryVariables>;
