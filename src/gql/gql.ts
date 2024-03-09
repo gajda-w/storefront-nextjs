@@ -20,9 +20,11 @@ const documents = {
     "fragment Collection on Collection {\n  id\n  name\n  slug\n}": types.CollectionFragmentDoc,
     "query CollectionsProductsBySlug($first: Int!, $channel: String!, $slug: String!) {\n  collection(slug: $slug, channel: $channel) {\n    name\n    id\n    slug\n    products(first: $first) {\n      edges {\n        node {\n          ...Product\n        }\n      }\n    }\n  }\n}": types.CollectionsProductsBySlugDocument,
     "query Collections($first: Int!, $channel: String!) {\n  collections(first: $first, channel: $channel) {\n    edges {\n      node {\n        name\n        id\n        slug\n      }\n    }\n  }\n}": types.CollectionsDocument,
-    "fragment Product on Product {\n  id\n  slug\n  name\n  description\n  media {\n    id\n    url\n    alt\n  }\n  thumbnail {\n    url\n    alt\n  }\n  variants {\n    id\n    name\n    product {\n      name\n    }\n  }\n  defaultVariant {\n    id\n    name\n    pricing {\n      price {\n        gross {\n          amount\n          currency\n        }\n      }\n    }\n  }\n}": types.ProductFragmentDoc,
+    "fragment Money on Money {\n  amount\n  currency\n}": types.MoneyFragmentDoc,
+    "fragment Product on Product {\n  id\n  slug\n  name\n  description\n  pricing {\n    priceRange {\n      start {\n        gross {\n          amount\n          currency\n        }\n      }\n    }\n  }\n  media {\n    id\n    url\n    alt\n  }\n  thumbnail {\n    url\n    alt\n  }\n  variants {\n    ...Variant\n  }\n  defaultVariant {\n    ...Variant\n  }\n}": types.ProductFragmentDoc,
     "query ProductBySlug($slug: String!, $channel: String!) {\n  product(slug: $slug, channel: $channel) {\n    ...Product\n  }\n}": types.ProductBySlugDocument,
     "query ProductsSearch($channel: String!, $first: Int!, $search: String!) {\n  products(channel: $channel, first: $first, search: $search) {\n    edges {\n      node {\n        ...Product\n      }\n    }\n  }\n}": types.ProductsSearchDocument,
+    "fragment Variant on ProductVariant {\n  id\n  name\n  pricing {\n    priceUndiscounted {\n      gross {\n        amount\n        currency\n      }\n    }\n    price {\n      gross {\n        amount\n        currency\n      }\n    }\n  }\n}": types.VariantFragmentDoc,
 };
 
 /**
@@ -52,7 +54,11 @@ export function graphql(source: "query Collections($first: Int!, $channel: Strin
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "fragment Product on Product {\n  id\n  slug\n  name\n  description\n  media {\n    id\n    url\n    alt\n  }\n  thumbnail {\n    url\n    alt\n  }\n  variants {\n    id\n    name\n    product {\n      name\n    }\n  }\n  defaultVariant {\n    id\n    name\n    pricing {\n      price {\n        gross {\n          amount\n          currency\n        }\n      }\n    }\n  }\n}"): typeof import('./graphql').ProductFragmentDoc;
+export function graphql(source: "fragment Money on Money {\n  amount\n  currency\n}"): typeof import('./graphql').MoneyFragmentDoc;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "fragment Product on Product {\n  id\n  slug\n  name\n  description\n  pricing {\n    priceRange {\n      start {\n        gross {\n          amount\n          currency\n        }\n      }\n    }\n  }\n  media {\n    id\n    url\n    alt\n  }\n  thumbnail {\n    url\n    alt\n  }\n  variants {\n    ...Variant\n  }\n  defaultVariant {\n    ...Variant\n  }\n}"): typeof import('./graphql').ProductFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -61,6 +67,10 @@ export function graphql(source: "query ProductBySlug($slug: String!, $channel: S
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query ProductsSearch($channel: String!, $first: Int!, $search: String!) {\n  products(channel: $channel, first: $first, search: $search) {\n    edges {\n      node {\n        ...Product\n      }\n    }\n  }\n}"): typeof import('./graphql').ProductsSearchDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "fragment Variant on ProductVariant {\n  id\n  name\n  pricing {\n    priceUndiscounted {\n      gross {\n        amount\n        currency\n      }\n    }\n    price {\n      gross {\n        amount\n        currency\n      }\n    }\n  }\n}"): typeof import('./graphql').VariantFragmentDoc;
 
 
 export function graphql(source: string) {

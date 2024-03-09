@@ -3,6 +3,15 @@ fragment Product on Product {
   slug
   name
   description
+  pricing {
+    priceRange {
+      start {
+        gross {
+          ...Money
+        }
+      }
+    }
+  }
   media {
     id
     url
@@ -13,22 +22,9 @@ fragment Product on Product {
     alt
   }
   variants {
-    id
-    name
-    product {
-      name
-    }
+    ...Variant
   }
   defaultVariant {
-    id
-    name
-    pricing {
-      price {
-        gross {
-          amount
-          currency
-        }
-      }
-    }
+    ...Variant
   }
 }

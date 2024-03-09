@@ -1,5 +1,3 @@
-// import type { ProductResponseItem } from "@/app/products/[pageNumber]/page";
-// import { type Product } from "@/app/types";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ProductBySlugDocument } from "@/gql/graphql";
@@ -12,23 +10,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
-// export const generateStaticParams = async () => {
-//   const res = await fetch("https://naszsklep-api.vercel.app/api/products");
-//   const productsResponse = (await res.json()) as ProductResponseItem[];
-
-//   const products = productsResponse.map(
-//     (product): Product => ({
-//       id: product.id,
-//       name: product.title,
-//       category: product.category,
-//       price: product.price,
-//       image: product.image,
-//     }),
-//   );
-
-//   return products.map((product) => ({ id: product.id }));
-// };
+import { RichText } from "@/components/ui/rich-text";
+import { type Maybe } from "@/lib/types";
+import { Price } from "@/components/price";
 
 export const generateMetadata = async ({ params: { id } }: { params: { id: string } }) => {
   const product = await executeGraphql(ProductBySlugDocument, {
@@ -49,13 +33,16 @@ export default async function Product({ params: { id } }: { params: { id: string
     channel: "default-channel",
   });
 
+  // const variants = product.product?.variants;
+  // const defaultVariant = product.product?.defaultVariant;
+
   if (!product) {
     return notFound();
   }
 
   return (
-    <div className="flex flex-col gap-10 p-2 sm:flex-row sm:px-6 lg:p-8">
-      <div className="w-1/2 overflow-hidden">
+    <div className="mx-auto my-8 flex max-w-7xl flex-col gap-10 px-4 sm:flex-row">
+      <div className="w-full overflow-hidden sm:w-1/2">
         <Carousel className="m-full mx-4">
           <CarouselContent>
             {product.product?.media?.map((item) => (
@@ -83,9 +70,11 @@ export default async function Product({ params: { id } }: { params: { id: string
       <div className="max-w-xl">
         <h1 className="text-4xl font-bold">{product.product?.name}</h1>
         <div className="flex items-center">
-          <p className="my-3 text-lg font-semibold">
-            {product.product?.defaultVariant?.pricing?.price?.gross.amount}
-          </p>
+          <p className="my-3 text-lg font-semibold">{`From: `}</p>
+          <Price price={product.product?.pricing?.priceRange?.start?.gross} />
+        </div>
+        <div>
+          <RichText jsonStringData={product.product?.description as Maybe<string>} />
         </div>
       </div>
     </div>

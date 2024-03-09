@@ -1,0 +1,16 @@
+fragment Variant on ProductVariant {
+  id
+  name
+  pricing {
+    priceUndiscounted {
+      gross {
+        ...Money
+      }
+    }
+    price {
+      gross {
+        ...Money
+      }
+    }
+  }
+}

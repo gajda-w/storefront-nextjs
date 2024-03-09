@@ -31904,7 +31904,7 @@ export type CategoryProductsBySlugQueryVariables = Exact<{
 }>;
 
 
-export type CategoryProductsBySlugQuery = { category?: { id: string, name: string, slug: string, products?: { pageInfo: { hasNextPage: boolean, hasPreviousPage: boolean }, edges: Array<{ node: { id: string, slug: string, name: string, description?: unknown | null, media?: Array<{ id: string, url: string, alt: string }> | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, product: { name: string } }> | null, defaultVariant?: { id: string, name: string, pricing?: { price?: { gross: { amount: number, currency: string } } | null } | null } | null } }> } | null } | null };
+export type CategoryProductsBySlugQuery = { category?: { id: string, name: string, slug: string, products?: { pageInfo: { hasNextPage: boolean, hasPreviousPage: boolean }, edges: Array<{ node: { id: string, slug: string, name: string, description?: unknown | null, pricing?: { priceRange?: { start?: { gross: { amount: number, currency: string } } | null } | null } | null, media?: Array<{ id: string, url: string, alt: string }> | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, pricing?: { priceUndiscounted?: { gross: { amount: number, currency: string } } | null, price?: { gross: { amount: number, currency: string } } | null } | null }> | null, defaultVariant?: { id: string, name: string, pricing?: { priceUndiscounted?: { gross: { amount: number, currency: string } } | null, price?: { gross: { amount: number, currency: string } } | null } | null } | null } }> } | null } | null };
 
 export type CollectionFragment = { id: string, name: string, slug: string };
 
@@ -31915,7 +31915,7 @@ export type CollectionsProductsBySlugQueryVariables = Exact<{
 }>;
 
 
-export type CollectionsProductsBySlugQuery = { collection?: { name: string, id: string, slug: string, products?: { edges: Array<{ node: { id: string, slug: string, name: string, description?: unknown | null, media?: Array<{ id: string, url: string, alt: string }> | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, product: { name: string } }> | null, defaultVariant?: { id: string, name: string, pricing?: { price?: { gross: { amount: number, currency: string } } | null } | null } | null } }> } | null } | null };
+export type CollectionsProductsBySlugQuery = { collection?: { name: string, id: string, slug: string, products?: { edges: Array<{ node: { id: string, slug: string, name: string, description?: unknown | null, pricing?: { priceRange?: { start?: { gross: { amount: number, currency: string } } | null } | null } | null, media?: Array<{ id: string, url: string, alt: string }> | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, pricing?: { priceUndiscounted?: { gross: { amount: number, currency: string } } | null, price?: { gross: { amount: number, currency: string } } | null } | null }> | null, defaultVariant?: { id: string, name: string, pricing?: { priceUndiscounted?: { gross: { amount: number, currency: string } } | null, price?: { gross: { amount: number, currency: string } } | null } | null } | null } }> } | null } | null };
 
 export type CollectionsQueryVariables = Exact<{
   first: Scalars['Int']['input'];
@@ -31925,7 +31925,9 @@ export type CollectionsQueryVariables = Exact<{
 
 export type CollectionsQuery = { collections?: { edges: Array<{ node: { name: string, id: string, slug: string } }> } | null };
 
-export type ProductFragment = { id: string, slug: string, name: string, description?: unknown | null, media?: Array<{ id: string, url: string, alt: string }> | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, product: { name: string } }> | null, defaultVariant?: { id: string, name: string, pricing?: { price?: { gross: { amount: number, currency: string } } | null } | null } | null };
+export type MoneyFragment = { amount: number, currency: string };
+
+export type ProductFragment = { id: string, slug: string, name: string, description?: unknown | null, pricing?: { priceRange?: { start?: { gross: { amount: number, currency: string } } | null } | null } | null, media?: Array<{ id: string, url: string, alt: string }> | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, pricing?: { priceUndiscounted?: { gross: { amount: number, currency: string } } | null, price?: { gross: { amount: number, currency: string } } | null } | null }> | null, defaultVariant?: { id: string, name: string, pricing?: { priceUndiscounted?: { gross: { amount: number, currency: string } } | null, price?: { gross: { amount: number, currency: string } } | null } | null } | null };
 
 export type ProductBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -31933,7 +31935,7 @@ export type ProductBySlugQueryVariables = Exact<{
 }>;
 
 
-export type ProductBySlugQuery = { product?: { id: string, slug: string, name: string, description?: unknown | null, media?: Array<{ id: string, url: string, alt: string }> | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, product: { name: string } }> | null, defaultVariant?: { id: string, name: string, pricing?: { price?: { gross: { amount: number, currency: string } } | null } | null } | null } | null };
+export type ProductBySlugQuery = { product?: { id: string, slug: string, name: string, description?: unknown | null, pricing?: { priceRange?: { start?: { gross: { amount: number, currency: string } } | null } | null } | null, media?: Array<{ id: string, url: string, alt: string }> | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, pricing?: { priceUndiscounted?: { gross: { amount: number, currency: string } } | null, price?: { gross: { amount: number, currency: string } } | null } | null }> | null, defaultVariant?: { id: string, name: string, pricing?: { priceUndiscounted?: { gross: { amount: number, currency: string } } | null, price?: { gross: { amount: number, currency: string } } | null } | null } | null } | null };
 
 export type ProductsSearchQueryVariables = Exact<{
   channel: Scalars['String']['input'];
@@ -31942,7 +31944,9 @@ export type ProductsSearchQueryVariables = Exact<{
 }>;
 
 
-export type ProductsSearchQuery = { products?: { edges: Array<{ node: { id: string, slug: string, name: string, description?: unknown | null, media?: Array<{ id: string, url: string, alt: string }> | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, product: { name: string } }> | null, defaultVariant?: { id: string, name: string, pricing?: { price?: { gross: { amount: number, currency: string } } | null } | null } | null } }> } | null };
+export type ProductsSearchQuery = { products?: { edges: Array<{ node: { id: string, slug: string, name: string, description?: unknown | null, pricing?: { priceRange?: { start?: { gross: { amount: number, currency: string } } | null } | null } | null, media?: Array<{ id: string, url: string, alt: string }> | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, pricing?: { priceUndiscounted?: { gross: { amount: number, currency: string } } | null, price?: { gross: { amount: number, currency: string } } | null } | null }> | null, defaultVariant?: { id: string, name: string, pricing?: { priceUndiscounted?: { gross: { amount: number, currency: string } } | null, price?: { gross: { amount: number, currency: string } } | null } | null } | null } }> } | null };
+
+export type VariantFragment = { id: string, name: string, pricing?: { priceUndiscounted?: { gross: { amount: number, currency: string } } | null, price?: { gross: { amount: number, currency: string } } | null } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -31972,12 +31976,48 @@ export const CollectionFragmentDoc = new TypedDocumentString(`
   slug
 }
     `, {"fragmentName":"Collection"}) as unknown as TypedDocumentString<CollectionFragment, unknown>;
+export const MoneyFragmentDoc = new TypedDocumentString(`
+    fragment Money on Money {
+  amount
+  currency
+}
+    `, {"fragmentName":"Money"}) as unknown as TypedDocumentString<MoneyFragment, unknown>;
+export const VariantFragmentDoc = new TypedDocumentString(`
+    fragment Variant on ProductVariant {
+  id
+  name
+  pricing {
+    priceUndiscounted {
+      gross {
+        amount
+        currency
+      }
+    }
+    price {
+      gross {
+        amount
+        currency
+      }
+    }
+  }
+}
+    `, {"fragmentName":"Variant"}) as unknown as TypedDocumentString<VariantFragment, unknown>;
 export const ProductFragmentDoc = new TypedDocumentString(`
     fragment Product on Product {
   id
   slug
   name
   description
+  pricing {
+    priceRange {
+      start {
+        gross {
+          amount
+          currency
+        }
+      }
+    }
+  }
   media {
     id
     url
@@ -31988,26 +32028,30 @@ export const ProductFragmentDoc = new TypedDocumentString(`
     alt
   }
   variants {
-    id
-    name
-    product {
-      name
-    }
+    ...Variant
   }
   defaultVariant {
-    id
-    name
-    pricing {
-      price {
-        gross {
-          amount
-          currency
-        }
+    ...Variant
+  }
+}
+    fragment Variant on ProductVariant {
+  id
+  name
+  pricing {
+    priceUndiscounted {
+      gross {
+        amount
+        currency
+      }
+    }
+    price {
+      gross {
+        amount
+        currency
       }
     }
   }
-}
-    `, {"fragmentName":"Product"}) as unknown as TypedDocumentString<ProductFragment, unknown>;
+}`, {"fragmentName":"Product"}) as unknown as TypedDocumentString<ProductFragment, unknown>;
 export const CategoriesDocument = new TypedDocumentString(`
     query Categories($first: Int!) {
   categories(first: $first) {
@@ -32050,6 +32094,16 @@ fragment Product on Product {
   slug
   name
   description
+  pricing {
+    priceRange {
+      start {
+        gross {
+          amount
+          currency
+        }
+      }
+    }
+  }
   media {
     id
     url
@@ -32060,21 +32114,26 @@ fragment Product on Product {
     alt
   }
   variants {
-    id
-    name
-    product {
-      name
-    }
+    ...Variant
   }
   defaultVariant {
-    id
-    name
-    pricing {
-      price {
-        gross {
-          amount
-          currency
-        }
+    ...Variant
+  }
+}
+fragment Variant on ProductVariant {
+  id
+  name
+  pricing {
+    priceUndiscounted {
+      gross {
+        amount
+        currency
+      }
+    }
+    price {
+      gross {
+        amount
+        currency
       }
     }
   }
@@ -32099,6 +32158,16 @@ export const CollectionsProductsBySlugDocument = new TypedDocumentString(`
   slug
   name
   description
+  pricing {
+    priceRange {
+      start {
+        gross {
+          amount
+          currency
+        }
+      }
+    }
+  }
   media {
     id
     url
@@ -32109,21 +32178,26 @@ export const CollectionsProductsBySlugDocument = new TypedDocumentString(`
     alt
   }
   variants {
-    id
-    name
-    product {
-      name
-    }
+    ...Variant
   }
   defaultVariant {
-    id
-    name
-    pricing {
-      price {
-        gross {
-          amount
-          currency
-        }
+    ...Variant
+  }
+}
+fragment Variant on ProductVariant {
+  id
+  name
+  pricing {
+    priceUndiscounted {
+      gross {
+        amount
+        currency
+      }
+    }
+    price {
+      gross {
+        amount
+        currency
       }
     }
   }
@@ -32152,6 +32226,16 @@ export const ProductBySlugDocument = new TypedDocumentString(`
   slug
   name
   description
+  pricing {
+    priceRange {
+      start {
+        gross {
+          amount
+          currency
+        }
+      }
+    }
+  }
   media {
     id
     url
@@ -32162,21 +32246,26 @@ export const ProductBySlugDocument = new TypedDocumentString(`
     alt
   }
   variants {
-    id
-    name
-    product {
-      name
-    }
+    ...Variant
   }
   defaultVariant {
-    id
-    name
-    pricing {
-      price {
-        gross {
-          amount
-          currency
-        }
+    ...Variant
+  }
+}
+fragment Variant on ProductVariant {
+  id
+  name
+  pricing {
+    priceUndiscounted {
+      gross {
+        amount
+        currency
+      }
+    }
+    price {
+      gross {
+        amount
+        currency
       }
     }
   }
@@ -32196,6 +32285,16 @@ export const ProductsSearchDocument = new TypedDocumentString(`
   slug
   name
   description
+  pricing {
+    priceRange {
+      start {
+        gross {
+          amount
+          currency
+        }
+      }
+    }
+  }
   media {
     id
     url
@@ -32206,21 +32305,26 @@ export const ProductsSearchDocument = new TypedDocumentString(`
     alt
   }
   variants {
-    id
-    name
-    product {
-      name
-    }
+    ...Variant
   }
   defaultVariant {
-    id
-    name
-    pricing {
-      price {
-        gross {
-          amount
-          currency
-        }
+    ...Variant
+  }
+}
+fragment Variant on ProductVariant {
+  id
+  name
+  pricing {
+    priceUndiscounted {
+      gross {
+        amount
+        currency
+      }
+    }
+    price {
+      gross {
+        amount
+        currency
       }
     }
   }
