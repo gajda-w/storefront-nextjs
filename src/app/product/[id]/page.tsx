@@ -13,6 +13,7 @@ import {
 import { RichText } from "@/components/ui/rich-text";
 import { type Maybe } from "@/lib/types";
 import { Price } from "@/components/price";
+import { VariantDropdown } from "@/components/variant-dropdown";
 
 export const generateMetadata = async ({ params: { id } }: { params: { id: string } }) => {
   const product = await executeGraphql(ProductBySlugDocument, {
@@ -33,7 +34,7 @@ export default async function Product({ params: { id } }: { params: { id: string
     channel: "default-channel",
   });
 
-  // const variants = product.product?.variants;
+  const variants = product.product?.variants;
   // const defaultVariant = product.product?.defaultVariant;
 
   if (!product) {
@@ -73,9 +74,8 @@ export default async function Product({ params: { id } }: { params: { id: string
           <p className="my-3 text-lg font-semibold">{`From: `}</p>
           <Price price={product.product?.pricing?.priceRange?.start?.gross} />
         </div>
-        <div>
-          <RichText jsonStringData={product.product?.description as Maybe<string>} />
-        </div>
+        <VariantDropdown variants={variants} />
+        <RichText jsonStringData={product.product?.description as Maybe<string>} />
       </div>
     </div>
   );

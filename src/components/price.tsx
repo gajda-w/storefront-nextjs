@@ -10,8 +10,8 @@ type PriceProps = {
 
 export const Price = ({ price, priceUndiscounted }: PriceProps) => {
   return (
-    <div>
-      <p className="text-xl text-green-900">{`${price?.amount} ${price?.currency}`}</p>
+    <div className="mx-2">
+      <p className="text-xl">{`${price?.amount} ${price?.currency}`}</p>
       {!!priceUndiscounted && (
         <p className="text-red-900 line-through">{`${priceUndiscounted.amount} ${priceUndiscounted.currency}`}</p>
       )}
