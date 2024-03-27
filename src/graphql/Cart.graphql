@@ -1,0 +1,6 @@
+fragment CartFragment on Checkout {
+  id
+  lines {
+    ...CartLine
+  }
+}

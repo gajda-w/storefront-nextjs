@@ -2,11 +2,20 @@ import { ProductsList } from "@/components/products-list";
 import { CollectionsProductsBySlugDocument } from "@/gql/graphql";
 import { executeGraphql } from "@/lib/graphql";
 
-export default async function Products({ params: { slug } }: { params: { slug: string } }) {
-  const collections = await executeGraphql(CollectionsProductsBySlugDocument, {
-    channel: "default-channel",
-    first: 10,
-    slug: slug,
+export default async function Products({
+  params: { slug, num },
+}: {
+  params: { slug: string; num: number };
+}) {
+  console.log(num);
+
+  const collections = await executeGraphql({
+    query: CollectionsProductsBySlugDocument,
+    variables: {
+      channel: "channel-pln",
+      first: 8,
+      slug: slug,
+    },
   });
 
   const products = collections.collection?.products?.edges.map(({ node }) => node);

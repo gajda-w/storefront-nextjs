@@ -20,10 +20,9 @@ export const SearchBar = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await executeGraphql(ProductsSearchDocument, {
-        first: 10,
-        channel: "default-channel",
-        search: debouncedInputValue,
+      const response = await executeGraphql({
+        query: ProductsSearchDocument,
+        variables: { first: 10, channel: "channel-pln", search: debouncedInputValue },
       });
 
       const products = response.products?.edges.map(({ node }) => node);

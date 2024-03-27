@@ -1,0 +1,7 @@
+mutation CartCreate($lines: [CheckoutLineInput!]!, $channel: String!) {
+  checkoutCreate(input: { lines: $lines, channel: $channel }) {
+    checkout {
+      ...CartFragment
+    }
+  }
+}

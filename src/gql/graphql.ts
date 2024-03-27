@@ -2181,7 +2181,13 @@ export type AttributeTranslatableContent = Node & {
    * @deprecated This field will be removed in Saleor 4.0. Get model fields from the root level queries.
    */
   attribute?: Maybe<Attribute>;
-  /** The ID of the attribute. */
+  /**
+   * The ID of the attribute to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  attributeId: Scalars['ID']['output'];
+  /** The ID of the attribute translatable content. */
   id: Scalars['ID']['output'];
   /** Name of the attribute to translate. */
   name: Scalars['String']['output'];
@@ -2222,6 +2228,12 @@ export type AttributeTranslation = Node & {
   language: LanguageDisplay;
   /** Translated attribute name. */
   name: Scalars['String']['output'];
+  /**
+   * Represents the attribute fields to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  translatableContent?: Maybe<AttributeTranslatableContent>;
 };
 
 /** An enumeration. */
@@ -2638,6 +2650,12 @@ export type AttributeValueTranslatableContent = Node & {
    * @deprecated This field will be removed in Saleor 4.0. Get model fields from the root level queries.
    */
   attributeValue?: Maybe<AttributeValue>;
+  /**
+   * The ID of the attribute value to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  attributeValueId: Scalars['ID']['output'];
   /** The ID of the attribute value translatable content. */
   id: Scalars['ID']['output'];
   /** Name of the attribute value to translate. */
@@ -2695,6 +2713,12 @@ export type AttributeValueTranslation = Node & {
    * Rich text format. For reference see https://editorjs.io/
    */
   richText?: Maybe<Scalars['JSONString']['output']>;
+  /**
+   * Represents the attribute value fields to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  translatableContent?: Maybe<AttributeValueTranslatableContent>;
 };
 
 export type AttributeValueTranslationInput = {
@@ -3283,6 +3307,12 @@ export type CategoryTranslatableContent = Node & {
    */
   category?: Maybe<Category>;
   /**
+   * The ID of the category to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  categoryId: Scalars['ID']['output'];
+  /**
    * Category description to translate.
    *
    * Rich text format. For reference see https://editorjs.io/
@@ -3350,6 +3380,12 @@ export type CategoryTranslation = Node & {
   seoDescription?: Maybe<Scalars['String']['output']>;
   /** Translated SEO title. */
   seoTitle?: Maybe<Scalars['String']['output']>;
+  /**
+   * Represents the category fields to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  translatableContent?: Maybe<CategoryTranslatableContent>;
 };
 
 /**
@@ -3517,6 +3553,12 @@ export type Channel = Node & ObjectWithMetadata & {
    * Requires one of the following permissions: AUTHENTICATED_APP, AUTHENTICATED_STAFF_USER.
    */
   stockSettings: StockSettings;
+  /**
+   * Channel specific tax configuration.
+   *
+   * Requires one of the following permissions: AUTHENTICATED_STAFF_USER, AUTHENTICATED_APP.
+   */
+  taxConfiguration: TaxConfiguration;
   /**
    * List of warehouses assigned to this channel.
    *
@@ -5525,6 +5567,12 @@ export type CollectionTranslatableContent = Node & {
    */
   collection?: Maybe<Collection>;
   /**
+   * The ID of the collection to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  collectionId: Scalars['ID']['output'];
+  /**
    * Collection's description to translate.
    *
    * Rich text format. For reference see https://editorjs.io/
@@ -5592,6 +5640,12 @@ export type CollectionTranslation = Node & {
   seoDescription?: Maybe<Scalars['String']['output']>;
   /** Translated SEO title. */
   seoTitle?: Maybe<Scalars['String']['output']>;
+  /**
+   * Represents the collection fields to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  translatableContent?: Maybe<CollectionTranslatableContent>;
 };
 
 /**
@@ -10360,6 +10414,12 @@ export type MenuItemTranslatableContent = Node & {
    * @deprecated This field will be removed in Saleor 4.0. Get model fields from the root level queries.
    */
   menuItem?: Maybe<MenuItem>;
+  /**
+   * The ID of the menu item to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  menuItemId: Scalars['ID']['output'];
   /** Name of the menu item to translate. */
   name: Scalars['String']['output'];
   /** Returns translated menu item fields for the given language code. */
@@ -10392,6 +10452,12 @@ export type MenuItemTranslation = Node & {
   language: LanguageDisplay;
   /** Translated menu item name. */
   name: Scalars['String']['output'];
+  /**
+   * Represents the menu item fields to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  translatableContent?: Maybe<MenuItemTranslatableContent>;
 };
 
 /**
@@ -17828,6 +17894,12 @@ export type PageTranslatableContent = Node & {
    * @deprecated This field will be removed in Saleor 4.0. Get model fields from the root level queries.
    */
   page?: Maybe<Page>;
+  /**
+   * The ID of the page to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  pageId: Scalars['ID']['output'];
   /** SEO description to translate. */
   seoDescription?: Maybe<Scalars['String']['output']>;
   /** SEO title to translate. */
@@ -17881,6 +17953,12 @@ export type PageTranslation = Node & {
   seoTitle?: Maybe<Scalars['String']['output']>;
   /** Translated page title. */
   title?: Maybe<Scalars['String']['output']>;
+  /**
+   * Represents the page fields to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  translatableContent?: Maybe<PageTranslatableContent>;
 };
 
 export type PageTranslationInput = {
@@ -20762,6 +20840,12 @@ export type ProductTranslatableContent = Node & {
    * @deprecated This field will be removed in Saleor 4.0. Get model fields from the root level queries.
    */
   product?: Maybe<Product>;
+  /**
+   * The ID of the product to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  productId: Scalars['ID']['output'];
   /** SEO description to translate. */
   seoDescription?: Maybe<Scalars['String']['output']>;
   /** SEO title to translate. */
@@ -20820,6 +20904,12 @@ export type ProductTranslation = Node & {
   seoDescription?: Maybe<Scalars['String']['output']>;
   /** Translated SEO title. */
   seoTitle?: Maybe<Scalars['String']['output']>;
+  /**
+   * Represents the product fields to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  translatableContent?: Maybe<ProductTranslatableContent>;
 };
 
 /** Represents a type of product. It defines what attributes are available to products of this type. */
@@ -22097,6 +22187,12 @@ export type ProductVariantTranslatableContent = Node & {
    * @deprecated This field will be removed in Saleor 4.0. Get model fields from the root level queries.
    */
   productVariant?: Maybe<ProductVariant>;
+  /**
+   * The ID of the product variant to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  productVariantId: Scalars['ID']['output'];
   /** Returns translated product variant fields for the given language code. */
   translation?: Maybe<ProductVariantTranslation>;
 };
@@ -22134,6 +22230,12 @@ export type ProductVariantTranslation = Node & {
   language: LanguageDisplay;
   /** Translated product variant name. */
   name: Scalars['String']['output'];
+  /**
+   * Represents the product variant fields to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  translatableContent?: Maybe<ProductVariantTranslatableContent>;
 };
 
 /**
@@ -22987,6 +23089,12 @@ export type PromotionRuleTranslatableContent = Node & {
   id: Scalars['ID']['output'];
   /** Name of the promotion rule. */
   name?: Maybe<Scalars['String']['output']>;
+  /**
+   * ID of the promotion rule to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  promotionRuleId: Scalars['ID']['output'];
   /** Returns translated promotion rule fields for the given language code. */
   translation?: Maybe<PromotionRuleTranslation>;
 };
@@ -23031,6 +23139,12 @@ export type PromotionRuleTranslation = Node & {
   language: LanguageDisplay;
   /** Translated name of the promotion rule. */
   name?: Maybe<Scalars['String']['output']>;
+  /**
+   * Represents the promotion rule fields to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  translatableContent?: Maybe<PromotionRuleTranslatableContent>;
 };
 
 export type PromotionRuleTranslationInput = {
@@ -23254,6 +23368,8 @@ export type PromotionTranslatableContent = Node & {
   id: Scalars['ID']['output'];
   /** Name of the promotion. */
   name: Scalars['String']['output'];
+  /** ID of the promotion to translate. */
+  promotionId: Scalars['ID']['output'];
   /** Returns translated promotion fields for the given language code. */
   translation?: Maybe<PromotionTranslation>;
 };
@@ -23298,6 +23414,12 @@ export type PromotionTranslation = Node & {
   language: LanguageDisplay;
   /** Translated name of the promotion. */
   name?: Maybe<Scalars['String']['output']>;
+  /**
+   * Represents the promotion fields to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  translatableContent?: Maybe<PromotionTranslatableContent>;
 };
 
 export type PromotionTranslationInput = {
@@ -25069,6 +25191,12 @@ export type SaleTranslatableContent = Node & {
    * @deprecated This field will be removed in Saleor 4.0. Get model fields from the root level queries.
    */
   sale?: Maybe<Sale>;
+  /**
+   * The ID of the sale to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  saleId: Scalars['ID']['output'];
   /** Returns translated sale fields for the given language code. */
   translation?: Maybe<SaleTranslation>;
 };
@@ -25109,6 +25237,12 @@ export type SaleTranslation = Node & {
   language: LanguageDisplay;
   /** Translated name of sale. */
   name?: Maybe<Scalars['String']['output']>;
+  /**
+   * Represents the sale fields to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  translatableContent?: Maybe<SaleTranslatableContent>;
 };
 
 export type SaleType =
@@ -25447,6 +25581,12 @@ export type ShippingMethodTranslatableContent = Node & {
    * @deprecated This field will be removed in Saleor 4.0. Get model fields from the root level queries.
    */
   shippingMethod?: Maybe<ShippingMethodType>;
+  /**
+   * The ID of the shipping method to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  shippingMethodId: Scalars['ID']['output'];
   /** Returns translated shipping method fields for the given language code. */
   translation?: Maybe<ShippingMethodTranslation>;
 };
@@ -25471,6 +25611,12 @@ export type ShippingMethodTranslation = Node & {
   language: LanguageDisplay;
   /** Translated shipping method name. */
   name: Scalars['String']['output'];
+  /**
+   * Represents the shipping method fields to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  translatableContent?: Maybe<ShippingMethodTranslatableContent>;
 };
 
 /** Shipping method are the methods you'll use to get customer's orders to them. They are directly exposed to the customers. */
@@ -27517,7 +27663,7 @@ export type TaxConfiguration = Node & ObjectWithMetadata & {
    */
   privateMetafields?: Maybe<Scalars['Metadata']['output']>;
   /**
-   * The tax app id that will be used to calculate the taxes for the given channel. Empty value for `TAX_APP` set as `taxCalculationStrategy` means that Saleor will iterate over all installed tax apps. If multiple tax apps exist with provided tax app id use the `App` with newest `created` date. Will become mandatory in 4.0 for `TAX_APP` `taxCalculationStrategy`.
+   * The tax app `App.identifier` that will be used to calculate the taxes for the given channel. Empty value for `TAX_APP` set as `taxCalculationStrategy` means that Saleor will iterate over all installed tax apps. If multiple tax apps exist with provided tax app id use the `App` with newest `created` date. Will become mandatory in 4.0 for `TAX_APP` `taxCalculationStrategy`.
    *
    * Added in Saleor 3.19.
    */
@@ -27599,7 +27745,7 @@ export type TaxConfigurationPerCountry = {
   /** Determines whether displayed prices should include taxes for this country. */
   displayGrossPrices: Scalars['Boolean']['output'];
   /**
-   * The tax app id that will be used to calculate the taxes for the given channel and country. If not provided, use the value from the channel's tax configuration.
+   * The tax app `App.identifier` that will be used to calculate the taxes for the given channel and country. If not provided, use the value from the channel's tax configuration.
    *
    * Added in Saleor 3.19.
    */
@@ -27616,7 +27762,7 @@ export type TaxConfigurationPerCountryInput = {
   /** Determines whether displayed prices should include taxes for this country. */
   displayGrossPrices: Scalars['Boolean']['input'];
   /**
-   * The tax app identifier that will be used to calculate the taxes for the given channel and country. If not provided, use the value from the channel's tax configuration.
+   * The tax app `App.identifier` that will be used to calculate the taxes for the given channel and country. If not provided, use the value from the channel's tax configuration.
    *
    * Added in Saleor 3.19.
    */
@@ -27665,7 +27811,7 @@ export type TaxConfigurationUpdateInput = {
   /** List of country codes for which to remove the tax configuration. */
   removeCountriesConfiguration?: InputMaybe<Array<CountryCode>>;
   /**
-   * The tax app id that will be used to calculate the taxes for the given channel. Empty value for `TAX_APP` set as `taxCalculationStrategy` means that Saleor will iterate over all installed tax apps. If multiple tax apps exist with provided tax app id use the `App` with newest `created` date. It's possible to set plugin by using prefix `plugin:` with `PLUGIN_ID` e.g. with Avalara `plugin:mirumee.taxes.avalara`.Will become mandatory in 4.0 for `TAX_APP` `taxCalculationStrategy`.
+   * The tax app `App.identifier` that will be used to calculate the taxes for the given channel. Empty value for `TAX_APP` set as `taxCalculationStrategy` means that Saleor will iterate over all installed tax apps. If multiple tax apps exist with provided tax app id use the `App` with newest `created` date. It's possible to set plugin by using prefix `plugin:` with `PLUGIN_ID` e.g. with Avalara `plugin:mirumee.taxes.avalara`.Will become mandatory in 4.0 for `TAX_APP` `taxCalculationStrategy`.
    *
    * Added in Saleor 3.19.
    */
@@ -29249,6 +29395,10 @@ export type UserCreateInput = {
    * User account is confirmed.
    *
    * Added in Saleor 3.15.
+   *
+   * DEPRECATED: this field will be removed in Saleor 4.0.
+   *
+   * The user will be always set as unconfirmed. The confirmation will take place when the user sets the password.
    */
   isConfirmed?: InputMaybe<Scalars['Boolean']['input']>;
   /** User language code. */
@@ -30073,6 +30223,12 @@ export type VoucherTranslatableContent = Node & {
    * @deprecated This field will be removed in Saleor 4.0. Get model fields from the root level queries.
    */
   voucher?: Maybe<Voucher>;
+  /**
+   * The ID of the voucher to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  voucherId: Scalars['ID']['output'];
 };
 
 
@@ -30101,6 +30257,12 @@ export type VoucherTranslation = Node & {
   language: LanguageDisplay;
   /** Translated voucher name. */
   name?: Maybe<Scalars['String']['output']>;
+  /**
+   * Represents the voucher fields to translate.
+   *
+   * Added in Saleor 3.14.
+   */
+  translatableContent?: Maybe<VoucherTranslatableContent>;
 };
 
 export type VoucherTypeEnum =
@@ -31888,6 +32050,33 @@ export type _Service = {
   sdl?: Maybe<Scalars['String']['output']>;
 };
 
+export type CartFragmentFragment = { id: string, lines: Array<{ id: string, quantity: number, variant: { id: string, name: string, product: { id: string, name: string, thumbnail?: { url: string } | null }, pricing?: { price?: { net: { amount: number } } | null } | null } }> };
+
+export type CartAddProductMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+  lines: Array<CheckoutLineUpdateInput> | CheckoutLineUpdateInput;
+}>;
+
+
+export type CartAddProductMutation = { checkoutLinesUpdate?: { errors: Array<{ field?: string | null, message?: string | null }> } | null };
+
+export type CartCreateMutationVariables = Exact<{
+  lines: Array<CheckoutLineInput> | CheckoutLineInput;
+  channel: Scalars['String']['input'];
+}>;
+
+
+export type CartCreateMutation = { checkoutCreate?: { checkout?: { id: string, lines: Array<{ id: string, quantity: number, variant: { id: string, name: string, product: { id: string, name: string, thumbnail?: { url: string } | null }, pricing?: { price?: { net: { amount: number } } | null } | null } }> } | null } | null };
+
+export type CartGetByIdQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type CartGetByIdQuery = { checkout?: { id: string, lines: Array<{ id: string, quantity: number, variant: { id: string, name: string, product: { id: string, name: string, thumbnail?: { url: string } | null }, pricing?: { price?: { net: { amount: number } } | null } | null } }> } | null };
+
+export type CartLineFragment = { id: string, quantity: number, variant: { id: string, name: string, product: { id: string, name: string, thumbnail?: { url: string } | null }, pricing?: { price?: { net: { amount: number } } | null } | null } };
+
 export type CategoriesQueryVariables = Exact<{
   first: Scalars['Int']['input'];
 }>;
@@ -31899,12 +32088,13 @@ export type CategoryFragment = { id: string, name: string, slug: string };
 
 export type CategoryProductsBySlugQueryVariables = Exact<{
   first: Scalars['Int']['input'];
+  after?: InputMaybe<Scalars['String']['input']>;
   channel: Scalars['String']['input'];
   slug: Scalars['String']['input'];
 }>;
 
 
-export type CategoryProductsBySlugQuery = { category?: { id: string, name: string, slug: string, products?: { pageInfo: { hasNextPage: boolean, hasPreviousPage: boolean }, edges: Array<{ node: { id: string, slug: string, name: string, description?: unknown | null, pricing?: { priceRange?: { start?: { gross: { amount: number, currency: string } } | null } | null } | null, media?: Array<{ id: string, url: string, alt: string }> | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, pricing?: { priceUndiscounted?: { gross: { amount: number, currency: string } } | null, price?: { gross: { amount: number, currency: string } } | null } | null }> | null, defaultVariant?: { id: string, name: string, pricing?: { priceUndiscounted?: { gross: { amount: number, currency: string } } | null, price?: { gross: { amount: number, currency: string } } | null } | null } | null } }> } | null } | null };
+export type CategoryProductsBySlugQuery = { category?: { id: string, name: string, slug: string, products?: { pageInfo: { hasNextPage: boolean, hasPreviousPage: boolean, endCursor?: string | null }, edges: Array<{ node: { id: string, slug: string, name: string, description?: unknown | null, pricing?: { priceRange?: { start?: { gross: { amount: number, currency: string } } | null } | null } | null, media?: Array<{ id: string, url: string, alt: string }> | null, thumbnail?: { url: string, alt?: string | null } | null, variants?: Array<{ id: string, name: string, pricing?: { priceUndiscounted?: { gross: { amount: number, currency: string } } | null, price?: { gross: { amount: number, currency: string } } | null } | null }> | null, defaultVariant?: { id: string, name: string, pricing?: { priceUndiscounted?: { gross: { amount: number, currency: string } } | null, price?: { gross: { amount: number, currency: string } } | null } | null } | null } }> } | null } | null };
 
 export type CollectionFragment = { id: string, name: string, slug: string };
 
@@ -31962,6 +32152,59 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+export const CartLineFragmentDoc = new TypedDocumentString(`
+    fragment CartLine on CheckoutLine {
+  id
+  quantity
+  variant {
+    id
+    name
+    product {
+      id
+      name
+      thumbnail {
+        url
+      }
+    }
+    pricing {
+      price {
+        net {
+          amount
+        }
+      }
+    }
+  }
+}
+    `, {"fragmentName":"CartLine"}) as unknown as TypedDocumentString<CartLineFragment, unknown>;
+export const CartFragmentFragmentDoc = new TypedDocumentString(`
+    fragment CartFragment on Checkout {
+  id
+  lines {
+    ...CartLine
+  }
+}
+    fragment CartLine on CheckoutLine {
+  id
+  quantity
+  variant {
+    id
+    name
+    product {
+      id
+      name
+      thumbnail {
+        url
+      }
+    }
+    pricing {
+      price {
+        net {
+          amount
+        }
+      }
+    }
+  }
+}`, {"fragmentName":"CartFragment"}) as unknown as TypedDocumentString<CartFragmentFragment, unknown>;
 export const CategoryFragmentDoc = new TypedDocumentString(`
     fragment Category on Category {
   id
@@ -31989,19 +32232,20 @@ export const VariantFragmentDoc = new TypedDocumentString(`
   pricing {
     priceUndiscounted {
       gross {
-        amount
-        currency
+        ...Money
       }
     }
     price {
       gross {
-        amount
-        currency
+        ...Money
       }
     }
   }
 }
-    `, {"fragmentName":"Variant"}) as unknown as TypedDocumentString<VariantFragment, unknown>;
+    fragment Money on Money {
+  amount
+  currency
+}`, {"fragmentName":"Variant"}) as unknown as TypedDocumentString<VariantFragment, unknown>;
 export const ProductFragmentDoc = new TypedDocumentString(`
     fragment Product on Product {
   id
@@ -32012,8 +32256,7 @@ export const ProductFragmentDoc = new TypedDocumentString(`
     priceRange {
       start {
         gross {
-          amount
-          currency
+          ...Money
         }
       }
     }
@@ -32034,24 +32277,106 @@ export const ProductFragmentDoc = new TypedDocumentString(`
     ...Variant
   }
 }
-    fragment Variant on ProductVariant {
+    fragment Money on Money {
+  amount
+  currency
+}
+fragment Variant on ProductVariant {
   id
   name
   pricing {
     priceUndiscounted {
       gross {
-        amount
-        currency
+        ...Money
       }
     }
     price {
       gross {
-        amount
-        currency
+        ...Money
       }
     }
   }
 }`, {"fragmentName":"Product"}) as unknown as TypedDocumentString<ProductFragment, unknown>;
+export const CartAddProductDocument = new TypedDocumentString(`
+    mutation CartAddProduct($id: ID!, $lines: [CheckoutLineUpdateInput!]!) {
+  checkoutLinesUpdate(id: $id, lines: $lines) {
+    errors {
+      field
+      message
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CartAddProductMutation, CartAddProductMutationVariables>;
+export const CartCreateDocument = new TypedDocumentString(`
+    mutation CartCreate($lines: [CheckoutLineInput!]!, $channel: String!) {
+  checkoutCreate(input: {lines: $lines, channel: $channel}) {
+    checkout {
+      ...CartFragment
+    }
+  }
+}
+    fragment CartFragment on Checkout {
+  id
+  lines {
+    ...CartLine
+  }
+}
+fragment CartLine on CheckoutLine {
+  id
+  quantity
+  variant {
+    id
+    name
+    product {
+      id
+      name
+      thumbnail {
+        url
+      }
+    }
+    pricing {
+      price {
+        net {
+          amount
+        }
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<CartCreateMutation, CartCreateMutationVariables>;
+export const CartGetByIdDocument = new TypedDocumentString(`
+    query CartGetById($id: ID!) {
+  checkout(id: $id) {
+    ...CartFragment
+  }
+}
+    fragment CartFragment on Checkout {
+  id
+  lines {
+    ...CartLine
+  }
+}
+fragment CartLine on CheckoutLine {
+  id
+  quantity
+  variant {
+    id
+    name
+    product {
+      id
+      name
+      thumbnail {
+        url
+      }
+    }
+    pricing {
+      price {
+        net {
+          amount
+        }
+      }
+    }
+  }
+}`) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;
 export const CategoriesDocument = new TypedDocumentString(`
     query Categories($first: Int!) {
   categories(first: $first) {
@@ -32068,13 +32393,14 @@ export const CategoriesDocument = new TypedDocumentString(`
   slug
 }`) as unknown as TypedDocumentString<CategoriesQuery, CategoriesQueryVariables>;
 export const CategoryProductsBySlugDocument = new TypedDocumentString(`
-    query CategoryProductsBySlug($first: Int!, $channel: String!, $slug: String!) {
+    query CategoryProductsBySlug($first: Int!, $after: String, $channel: String!, $slug: String!) {
   category(slug: $slug) {
     ...Category
-    products(first: $first, channel: $channel) {
+    products(first: $first, after: $after, channel: $channel) {
       pageInfo {
         hasNextPage
         hasPreviousPage
+        endCursor
       }
       edges {
         node {
@@ -32089,6 +32415,10 @@ export const CategoryProductsBySlugDocument = new TypedDocumentString(`
   name
   slug
 }
+fragment Money on Money {
+  amount
+  currency
+}
 fragment Product on Product {
   id
   slug
@@ -32098,8 +32428,7 @@ fragment Product on Product {
     priceRange {
       start {
         gross {
-          amount
-          currency
+          ...Money
         }
       }
     }
@@ -32126,14 +32455,12 @@ fragment Variant on ProductVariant {
   pricing {
     priceUndiscounted {
       gross {
-        amount
-        currency
+        ...Money
       }
     }
     price {
       gross {
-        amount
-        currency
+        ...Money
       }
     }
   }
@@ -32153,7 +32480,11 @@ export const CollectionsProductsBySlugDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment Product on Product {
+    fragment Money on Money {
+  amount
+  currency
+}
+fragment Product on Product {
   id
   slug
   name
@@ -32162,8 +32493,7 @@ export const CollectionsProductsBySlugDocument = new TypedDocumentString(`
     priceRange {
       start {
         gross {
-          amount
-          currency
+          ...Money
         }
       }
     }
@@ -32190,14 +32520,12 @@ fragment Variant on ProductVariant {
   pricing {
     priceUndiscounted {
       gross {
-        amount
-        currency
+        ...Money
       }
     }
     price {
       gross {
-        amount
-        currency
+        ...Money
       }
     }
   }
@@ -32221,7 +32549,11 @@ export const ProductBySlugDocument = new TypedDocumentString(`
     ...Product
   }
 }
-    fragment Product on Product {
+    fragment Money on Money {
+  amount
+  currency
+}
+fragment Product on Product {
   id
   slug
   name
@@ -32230,8 +32562,7 @@ export const ProductBySlugDocument = new TypedDocumentString(`
     priceRange {
       start {
         gross {
-          amount
-          currency
+          ...Money
         }
       }
     }
@@ -32258,14 +32589,12 @@ fragment Variant on ProductVariant {
   pricing {
     priceUndiscounted {
       gross {
-        amount
-        currency
+        ...Money
       }
     }
     price {
       gross {
-        amount
-        currency
+        ...Money
       }
     }
   }
@@ -32280,7 +32609,11 @@ export const ProductsSearchDocument = new TypedDocumentString(`
     }
   }
 }
-    fragment Product on Product {
+    fragment Money on Money {
+  amount
+  currency
+}
+fragment Product on Product {
   id
   slug
   name
@@ -32289,8 +32622,7 @@ export const ProductsSearchDocument = new TypedDocumentString(`
     priceRange {
       start {
         gross {
-          amount
-          currency
+          ...Money
         }
       }
     }
@@ -32317,14 +32649,12 @@ fragment Variant on ProductVariant {
   pricing {
     priceUndiscounted {
       gross {
-        amount
-        currency
+        ...Money
       }
     }
     price {
       gross {
-        amount
-        currency
+        ...Money
       }
     }
   }

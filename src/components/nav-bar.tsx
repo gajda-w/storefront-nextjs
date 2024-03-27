@@ -1,4 +1,4 @@
-import { Feather, ShoppingCart, User } from "lucide-react";
+import { Feather, User } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -18,12 +18,13 @@ import { ModeToggle } from "@/components/toggle-mode";
 import { Button } from "@/components/ui/button";
 // import { SearchBar } from "@/components/search-bar/search-bar";
 import { SearchBar } from "@/components/search-bar/search-bar";
+import { CartIcon } from "@/components/cart-icon";
 
 export const Navbar = async () => {
-  const categories = await executeGraphql(CategoriesDocument, { first: 6 });
-  const collections = await executeGraphql(CollectionsDocument, {
-    first: 5,
-    channel: "default-channel",
+  const categories = await executeGraphql({ query: CategoriesDocument, variables: { first: 6 } });
+  const collections = await executeGraphql({
+    query: CollectionsDocument,
+    variables: { first: 6, channel: "channel-pln" },
   });
 
   if (!categories) {
@@ -84,9 +85,7 @@ export const Navbar = async () => {
               </ul>
             </div>
             <div className="flex gap-2">
-              <Button variant="outline" size="icon">
-                <ShoppingCart />
-              </Button>
+              <CartIcon />
               <Button variant="outline" size="icon">
                 <User />
               </Button>

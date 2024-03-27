@@ -3,9 +3,9 @@ const nextConfig = {
   images: {
     remotePatterns: [{ hostname: "store-jibjen8y.eu.saleor.cloud" }],
   },
-  // experimental: {
-  //   typedRoutes: true,
-  // },
+  experimental: {
+    typedRoutes: true,
+  },
 };
 
 export default nextConfig;

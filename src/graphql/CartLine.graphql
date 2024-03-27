@@ -1,0 +1,22 @@
+fragment CartLine on CheckoutLine {
+  id
+  quantity
+  variant {
+    id
+    name
+    product {
+      id
+      name
+      thumbnail {
+        url
+      }
+    }
+    pricing {
+      price {
+        net {
+          amount
+        }
+      }
+    }
+  }
+}

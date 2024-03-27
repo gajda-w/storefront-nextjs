@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { CheckIcon } from "lucide-react";
 import { useWindowSize } from "usehooks-ts";
 import { usePathname, useRouter } from "next/navigation";
+import { type Route } from "next";
 import { screenSizes } from "../../config";
 import {
   Select,
@@ -38,8 +39,9 @@ export const VariantDropdown = ({ variants }: VariantDropdownProps) => {
 
   useEffect(() => {
     if (selectedVariant) {
-      router.push(`${pathname}#${selectedVariant}`, { scroll: false });
+      router.push(`${pathname}?variantId=${selectedVariant}` as Route, { scroll: false });
     } else if (getIdFromHash() && !selectedVariant) {
+      // @ts-expect-error idk why this is throwing an error
       router.push(pathname, { scroll: false });
     }
   }, [selectedVariant]);

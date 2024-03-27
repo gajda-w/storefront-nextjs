@@ -14,11 +14,13 @@ import { RichText } from "@/components/ui/rich-text";
 import { type Maybe } from "@/lib/types";
 import { Price } from "@/components/price";
 import { VariantDropdown } from "@/components/variant-dropdown";
+import { Button } from "@/components/ui/button";
+import { addProductToCartAction } from "@/app/product/[id]/actions";
 
 export const generateMetadata = async ({ params: { id } }: { params: { id: string } }) => {
-  const product = await executeGraphql(ProductBySlugDocument, {
-    slug: id,
-    channel: "default-channel",
+  const product = await executeGraphql({
+    query: ProductBySlugDocument,
+    variables: { slug: id, channel: "channel-pln" },
   });
 
   return {
@@ -28,18 +30,25 @@ export const generateMetadata = async ({ params: { id } }: { params: { id: strin
   };
 };
 
-export default async function Product({ params: { id } }: { params: { id: string } }) {
-  const product = await executeGraphql(ProductBySlugDocument, {
-    slug: id,
-    channel: "default-channel",
+export default async function Product({
+  params: { id },
+  searchParams: { variantId },
+}: {
+  params: { id: string };
+  searchParams: { variantId: string };
+}) {
+  const product = await executeGraphql({
+    query: ProductBySlugDocument,
+    variables: { slug: id, channel: "channel-pln" },
   });
 
   const variants = product.product?.variants;
-  // const defaultVariant = product.product?.defaultVariant;
 
   if (!product) {
     return notFound();
   }
+
+  const handleAddToCart = addProductToCartAction.bind(null, { variantId });
 
   return (
     <div className="mx-auto my-8 flex max-w-7xl flex-col gap-10 px-4 sm:flex-row">
@@ -75,7 +84,10 @@ export default async function Product({ params: { id } }: { params: { id: string
           <Price price={product.product?.pricing?.priceRange?.start?.gross} />
         </div>
         <VariantDropdown variants={variants} />
-        <RichText jsonStringData={product.product?.description as Maybe<string>} />
+        <RichText className="mt-4" jsonStringData={product.product?.description as Maybe<string>} />
+        <form action={handleAddToCart}>
+          <Button type="submit">Add to cart</Button>
+        </form>
       </div>
     </div>
   );

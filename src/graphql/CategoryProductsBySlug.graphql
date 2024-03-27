@@ -1,10 +1,11 @@
-query CategoryProductsBySlug($first: Int!, $channel: String!, $slug: String!) {
+query CategoryProductsBySlug($first: Int!, $after: String, $channel: String!, $slug: String!) {
   category(slug: $slug) {
     ...Category
-    products(first: $first, channel: $channel) {
+    products(first: $first, after: $after, channel: $channel) {
       pageInfo {
         hasNextPage
         hasPreviousPage
+        endCursor
       }
       edges {
         node {

@@ -1,0 +1,8 @@
+mutation CartAddProduct($id: ID!, $lines: [CheckoutLineUpdateInput!]!) {
+  checkoutLinesUpdate(id: $id, lines: $lines) {
+    errors {
+      field
+      message
+    }
+  }
+}
