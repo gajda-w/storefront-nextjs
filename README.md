@@ -1,23 +1,16 @@
-## Next.js storefront
+# Next.js storefront
 
-A storefront written using the latest technologies. The aim is to create the fastest, simplest storefront, ready to operate immediately upon connecting to an API.
+A basic, fast online store using [Next.js 14](https://nextjs.org/) and integrated [`saleor`](https://saleor.io/), headless ecommerce API.
 
-## Run Locally
+## Demo
 
-Clone the project
+You can try out the demo [here](https://storefront-nextjs-wine.vercel.app/).
 
-```bash
-  git clone https://github.com/gajda-w/storefront-nextjs
-```
+## Getting Started
 
-Install dependencies
+To run the development server, execute the following command:
 
 ```bash
-  pnpm i
-```
-
-Start the server
-
-```bash
-  pnpm dev
+pnpm install
+pnpm dev
 ```
